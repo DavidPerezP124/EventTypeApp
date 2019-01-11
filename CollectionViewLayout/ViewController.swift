@@ -49,7 +49,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         // Do any additional setup after loading the view, typically from a nib.
         setupView()
      //   collectionView.prefetchDataSource = self
-        ftchJSON()
+        
     }
     override func viewDidLayoutSubviews() {
         addGradientEffect(targetView: view1)
@@ -62,6 +62,13 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         gradient.startPoint = CGPoint(x: 0.0,y: 0.0)
         gradient.endPoint = CGPoint(x: 0.0,y: 1.0)
         targetView.layer.addSublayer(gradient)
+    }
+    
+    func createEventArray(){
+        ftchJSON()
+        
+        //let eventData = Entity(context: Persitance)
+        
     }
     
     fileprivate func ftchJSON(){
@@ -77,7 +84,6 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
                 guard let data = data else {return}
                 do {
                     let decoder = JSONDecoder()
-                    
                     self.events = try decoder.decode([EventModel].self, from: data)
                    // self.events = [self.event]
                     self.collectionView.reloadData()

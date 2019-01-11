@@ -21,6 +21,11 @@
 		8191134D21E7FCE6004A4086 /* iosExperienceSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8191134B21E7FCE6004A4086 /* iosExperienceSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8191135021E7FCF1004A4086 /* PresenceSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8191134F21E7FCF1004A4086 /* PresenceSDK.framework */; };
 		8191135121E7FCF1004A4086 /* PresenceSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8191134F21E7FCF1004A4086 /* PresenceSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8191135521E80BC5004A4086 /* PresenceSDKView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191135421E80BC5004A4086 /* PresenceSDKView.swift */; };
+		8191135821E826E4004A4086 /* CollectionViewLayoutModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8191135621E826E4004A4086 /* CollectionViewLayoutModel.xcdatamodeld */; };
+		8191137B21E827E1004A4086 /* PersitanceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191137A21E827E1004A4086 /* PersitanceService.swift */; };
+		8191139221E83335004A4086 /* EventEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191139021E83335004A4086 /* EventEntity+CoreDataClass.swift */; };
+		8191139321E83335004A4086 /* EventEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191139121E83335004A4086 /* EventEntity+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -53,6 +58,11 @@
 		818ECDA921E6D70D009C26E9 /* EventFromURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventFromURL.swift; sourceTree = "<group>"; };
 		8191134B21E7FCE6004A4086 /* iosExperienceSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iosExperienceSDK.framework; sourceTree = "<group>"; };
 		8191134F21E7FCF1004A4086 /* PresenceSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PresenceSDK.framework; sourceTree = "<group>"; };
+		8191135421E80BC5004A4086 /* PresenceSDKView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenceSDKView.swift; sourceTree = "<group>"; };
+		8191135721E826E4004A4086 /* CollectionViewLayoutModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CollectionViewLayoutModel.xcdatamodel; sourceTree = "<group>"; };
+		8191137A21E827E1004A4086 /* PersitanceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersitanceService.swift; sourceTree = "<group>"; };
+		8191139021E83335004A4086 /* EventEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		8191139121E83335004A4086 /* EventEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +99,8 @@
 		818B660721E56C83001056B6 /* CollectionViewLayout */ = {
 			isa = PBXGroup;
 			children = (
+				8191139021E83335004A4086 /* EventEntity+CoreDataClass.swift */,
+				8191139121E83335004A4086 /* EventEntity+CoreDataProperties.swift */,
 				818B660821E56C83001056B6 /* AppDelegate.swift */,
 				818B660A21E56C83001056B6 /* ViewController.swift */,
 				818B660C21E56C83001056B6 /* Main.storyboard */,
@@ -100,6 +112,9 @@
 				818ECDA521E6CBDB009C26E9 /* GradientColors.swift */,
 				818ECDA721E6D41D009C26E9 /* EventModel.swift */,
 				818ECDA921E6D70D009C26E9 /* EventFromURL.swift */,
+				8191135421E80BC5004A4086 /* PresenceSDKView.swift */,
+				8191137A21E827E1004A4086 /* PersitanceService.swift */,
+				8191135621E826E4004A4086 /* CollectionViewLayoutModel.xcdatamodeld */,
 			);
 			path = CollectionViewLayout;
 			sourceTree = "<group>";
@@ -179,11 +194,16 @@
 			files = (
 				818B661B21E56D0E001056B6 /* CollectionViewFlow.swift in Sources */,
 				818B660B21E56C83001056B6 /* ViewController.swift in Sources */,
+				8191135521E80BC5004A4086 /* PresenceSDKView.swift in Sources */,
 				818B661D21E57061001056B6 /* MyCellCollectionViewCell.swift in Sources */,
 				818ECDA621E6CBDC009C26E9 /* GradientColors.swift in Sources */,
+				8191139321E83335004A4086 /* EventEntity+CoreDataProperties.swift in Sources */,
+				8191137B21E827E1004A4086 /* PersitanceService.swift in Sources */,
 				818ECDA821E6D41D009C26E9 /* EventModel.swift in Sources */,
 				818ECDAA21E6D70D009C26E9 /* EventFromURL.swift in Sources */,
+				8191139221E83335004A4086 /* EventEntity+CoreDataClass.swift in Sources */,
 				818B660921E56C83001056B6 /* AppDelegate.swift in Sources */,
+				8191135821E826E4004A4086 /* CollectionViewLayoutModel.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -376,6 +396,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		8191135621E826E4004A4086 /* CollectionViewLayoutModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8191135721E826E4004A4086 /* CollectionViewLayoutModel.xcdatamodel */,
+			);
+			currentVersion = 8191135721E826E4004A4086 /* CollectionViewLayoutModel.xcdatamodel */;
+			path = CollectionViewLayoutModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 818B65FD21E56C83001056B6 /* Project object */;
 }
