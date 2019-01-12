@@ -7,15 +7,16 @@
 //
 
 import UIKit
+import CoreData
 
-class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+final class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
-    var event: EventModel!
-    var events: [EventModel?] = []
+    private  var savedEvents: [EventEntity] = []
+    private  var events: [EventModel?] = []
     
-    var gradient = CAGradientLayer()
-    var on = true
-    let view1 : UIView = {
+    private   var gradient = CAGradientLayer()
+    private  var on = true
+    private   let view1 : UIView = {
         let v = UIView()
         v.layer.masksToBounds = true
         v.clipsToBounds = true
@@ -24,21 +25,21 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     }()
     
     
-    let button : UIButton = {
-        let b = UIButton(type: UIButtonType.system)
-        let image = UIImage(named: "moonIcon")?.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
+    private  let button : UIButton = {
+        let b = UIButton(type: UIButton.ButtonType.system)
+        let image = UIImage(named: "moonIcon")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
         b.translatesAutoresizingMaskIntoConstraints = false
-        b.setImage(image, for: UIControlState.normal)
-        b.addTarget(self, action: #selector(changeColor), for: UIControlEvents.touchUpInside)
+        b.setImage(image, for: UIControl.State.normal)
+        b.addTarget(self, action: #selector(changeColor), for: UIControl.Event.touchUpInside)
         return b
     }()
     
     
-    let collectionView: CollectionViewFlow = {
+    private  let collectionView: CollectionViewFlow = {
         let c = CollectionViewFlow(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         c.isSpringLoaded = true
         c.backgroundColor = .clear
-        c.contentMode = UIViewContentMode.center
+        c.contentMode = UIView.ContentMode.center
         return c
     }()
     
@@ -48,14 +49,26 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         
         // Do any additional setup after loading the view, typically from a nib.
         setupView()
-     //   collectionView.prefetchDataSource = self
+        ftchJSON()
+        
+        let ftchRequest: NSFetchRequest<EventEntity> = EventEntity.fetchRequest()
+        
+        do {
+            let savedEvents = try PersitanceService.context.fetch(ftchRequest)
+            print(savedEvents)
+            // savedEvents = savedEvents
+            collectionView.reloadData()
+        } catch {
+            print("fetch error")
+        }
+        
         
     }
     override func viewDidLayoutSubviews() {
         addGradientEffect(targetView: view1)
     }
     
-    func addGradientEffect(targetView: UIView){
+    fileprivate  func addGradientEffect(targetView: UIView){
         gradient = CAGradientLayer()
         gradient.frame = targetView.frame
         gradient.colors = [GradientColors().oceanBlue, GradientColors().lightBlue, GradientColors().lightGreen]
@@ -64,15 +77,27 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         targetView.layer.addSublayer(gradient)
     }
     
-    func createEventArray(){
-        ftchJSON()
+    fileprivate   func createEventArray(){
+       
         
-        //let eventData = Entity(context: Persitance)
+        let eventData = EventEntity(context: PersitanceService.context)
         
+        for evnts in events {
+            let imgFromURl = URL(string: evnts!.img)
+            let data = try? Data(contentsOf: imgFromURl!)
+            eventData.entityImage = NSData(data: data!)
+            eventData.entityCost = evnts!.cost
+            eventData.entityTime = evnts!.time
+            eventData.entityNameString = evnts!.name
+            PersitanceService.saveContext()
+            savedEvents.append(eventData)
+            print(savedEvents)
+            collectionView.reloadData()
+        }
     }
     
     fileprivate func ftchJSON(){
-       
+        
         let urlString = "https://my-json-server.typicode.com/DavidPerezP124/EventJSON/posts"
         guard let url = URL(string: urlString) else {return}
         URLSession.shared.dataTask(with: url) { (data, _, err) in
@@ -85,17 +110,18 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
                 do {
                     let decoder = JSONDecoder()
                     self.events = try decoder.decode([EventModel].self, from: data)
-                   // self.events = [self.event]
+                    // self.events = [self.event]
                     self.collectionView.reloadData()
                 } catch let jsonError {
                     print("Decode failure", jsonError)
                 }
             }
-            
+            self.createEventArray()
             }.resume()
+        
     }
     
-    func setupView(){
+    fileprivate func setupView(){
         view.addSubview(view1)
         view.addSubview(button)
         view.addSubview(collectionView)
@@ -105,7 +131,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         collectionView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         collectionView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         collectionView.dataSource = self
-    
+        
         collectionView.delegate = self as UICollectionViewDelegate
         collectionView.register(MyCellCollectionViewCell.self, forCellWithReuseIdentifier: "MyCell")
         
@@ -122,15 +148,15 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
         
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    fileprivate func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.bounds.size.width, height: 120)
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+    fileprivate func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
+    fileprivate  func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
@@ -141,37 +167,39 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyCell", for: indexPath) as! MyCellCollectionViewCell
-        let cellEvent = events[indexPath.row]
-        let imgUrl = URL(string: (cellEvent!.img))
-        let data = try? Data(contentsOf: imgUrl!)
-        DispatchQueue.main.async {
-            cell.img.image = UIImage(data: data!)
-            print(cell.img.image)
-        }
-       // cell.img.contentMode = UIViewContentMode.scaleAspectFill
-        cell.label.text = cellEvent?.name
+//        DispatchQueue.main.async {
+//            let cellEvent = self.savedEvents[indexPath.row]
+//
+//            //        let imgUrl = URL(string: (cellEvent.img))
+//            //        let data = try? Data(contentsOf: imgUrl!)
+//
+//            cell.img.image = UIImage(data: cellEvent.entityImage! as Data)
+//            cell.label.text = cellEvent.entityNameString
+//        }
+        // cell.img.contentMode = UIViewContentMode.scaleAspectFill
+        
         return cell 
     }
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    fileprivate func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("selected")
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+    fileprivate func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
     
-   
+    
     
     
     @objc
-    func changeColor(){
+    fileprivate  func changeColor(){
         print("touched")
         
         if on == true {
             let animateColor = CABasicAnimation(keyPath: "colors")
             animateColor.duration = 0.5
             animateColor.toValue = [GradientColors().darkPurple, GradientColors().midPurple, GradientColors().darkBlue]
-            animateColor.fillMode = kCAFillModeForwards
+            animateColor.fillMode = CAMediaTimingFillMode.forwards
             animateColor.isRemovedOnCompletion = false
             gradient.add(animateColor, forKey: "hello")
             on = false
@@ -180,7 +208,7 @@ class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICo
             animateColor.duration = 0.5
             animateColor.fromValue = [GradientColors().darkPurple, GradientColors().midPurple, GradientColors().darkBlue]
             animateColor.toValue = [GradientColors().oceanBlue, GradientColors().lightBlue, GradientColors().lightGreen]
-            animateColor.fillMode = kCAFillModeForwards
+            animateColor.fillMode = CAMediaTimingFillMode.forwards
             animateColor.isRemovedOnCompletion = false
             gradient.add(animateColor, forKey: "hello")
             on = true

@@ -16,13 +16,12 @@
 		818B661D21E57061001056B6 /* MyCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818B661C21E57061001056B6 /* MyCellCollectionViewCell.swift */; };
 		818ECDA621E6CBDC009C26E9 /* GradientColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818ECDA521E6CBDB009C26E9 /* GradientColors.swift */; };
 		818ECDA821E6D41D009C26E9 /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818ECDA721E6D41D009C26E9 /* EventModel.swift */; };
-		818ECDAA21E6D70D009C26E9 /* EventFromURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818ECDA921E6D70D009C26E9 /* EventFromURL.swift */; };
 		8191134C21E7FCE6004A4086 /* iosExperienceSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8191134B21E7FCE6004A4086 /* iosExperienceSDK.framework */; };
 		8191134D21E7FCE6004A4086 /* iosExperienceSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8191134B21E7FCE6004A4086 /* iosExperienceSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8191135021E7FCF1004A4086 /* PresenceSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8191134F21E7FCF1004A4086 /* PresenceSDK.framework */; };
 		8191135121E7FCF1004A4086 /* PresenceSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8191134F21E7FCF1004A4086 /* PresenceSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8191135521E80BC5004A4086 /* PresenceSDKView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191135421E80BC5004A4086 /* PresenceSDKView.swift */; };
-		8191135821E826E4004A4086 /* CollectionViewLayoutModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8191135621E826E4004A4086 /* CollectionViewLayoutModel.xcdatamodeld */; };
+		8191135821E826E4004A4086 /* CollectionViewLayout.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8191135621E826E4004A4086 /* CollectionViewLayout.xcdatamodeld */; };
 		8191137B21E827E1004A4086 /* PersitanceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191137A21E827E1004A4086 /* PersitanceService.swift */; };
 		8191139221E83335004A4086 /* EventEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191139021E83335004A4086 /* EventEntity+CoreDataClass.swift */; };
 		8191139321E83335004A4086 /* EventEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191139121E83335004A4086 /* EventEntity+CoreDataProperties.swift */; };
@@ -55,7 +54,6 @@
 		818B661C21E57061001056B6 /* MyCellCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCellCollectionViewCell.swift; sourceTree = "<group>"; };
 		818ECDA521E6CBDB009C26E9 /* GradientColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientColors.swift; sourceTree = "<group>"; };
 		818ECDA721E6D41D009C26E9 /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
-		818ECDA921E6D70D009C26E9 /* EventFromURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventFromURL.swift; sourceTree = "<group>"; };
 		8191134B21E7FCE6004A4086 /* iosExperienceSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iosExperienceSDK.framework; sourceTree = "<group>"; };
 		8191134F21E7FCF1004A4086 /* PresenceSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PresenceSDK.framework; sourceTree = "<group>"; };
 		8191135421E80BC5004A4086 /* PresenceSDKView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenceSDKView.swift; sourceTree = "<group>"; };
@@ -111,10 +109,9 @@
 				818B661C21E57061001056B6 /* MyCellCollectionViewCell.swift */,
 				818ECDA521E6CBDB009C26E9 /* GradientColors.swift */,
 				818ECDA721E6D41D009C26E9 /* EventModel.swift */,
-				818ECDA921E6D70D009C26E9 /* EventFromURL.swift */,
 				8191135421E80BC5004A4086 /* PresenceSDKView.swift */,
 				8191137A21E827E1004A4086 /* PersitanceService.swift */,
-				8191135621E826E4004A4086 /* CollectionViewLayoutModel.xcdatamodeld */,
+				8191135621E826E4004A4086 /* CollectionViewLayout.xcdatamodeld */,
 			);
 			path = CollectionViewLayout;
 			sourceTree = "<group>";
@@ -147,11 +144,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "David Perez P.";
 				TargetAttributes = {
 					818B660421E56C83001056B6 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 1010;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -200,10 +198,9 @@
 				8191139321E83335004A4086 /* EventEntity+CoreDataProperties.swift in Sources */,
 				8191137B21E827E1004A4086 /* PersitanceService.swift in Sources */,
 				818ECDA821E6D41D009C26E9 /* EventModel.swift in Sources */,
-				818ECDAA21E6D70D009C26E9 /* EventFromURL.swift in Sources */,
 				8191139221E83335004A4086 /* EventEntity+CoreDataClass.swift in Sources */,
 				818B660921E56C83001056B6 /* AppDelegate.swift in Sources */,
-				8191135821E826E4004A4086 /* CollectionViewLayoutModel.xcdatamodeld in Sources */,
+				8191135821E826E4004A4086 /* CollectionViewLayout.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,6 +240,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -250,6 +248,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -300,6 +299,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -307,6 +307,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -350,7 +351,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.PerezP.CollectionViewLayout;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -369,7 +370,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.PerezP.CollectionViewLayout;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -398,13 +399,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		8191135621E826E4004A4086 /* CollectionViewLayoutModel.xcdatamodeld */ = {
+		8191135621E826E4004A4086 /* CollectionViewLayout.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				8191135721E826E4004A4086 /* CollectionViewLayoutModel.xcdatamodel */,
 			);
 			currentVersion = 8191135721E826E4004A4086 /* CollectionViewLayoutModel.xcdatamodel */;
-			path = CollectionViewLayoutModel.xcdatamodeld;
+			path = CollectionViewLayout.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

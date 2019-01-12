@@ -10,7 +10,7 @@
 import Foundation
 import CoreData
 
-@objc(EventEntity)
+//@objc(EventEntity)
 public class EventEntity: NSManagedObject {
 
 }

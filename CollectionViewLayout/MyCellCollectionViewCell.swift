@@ -24,7 +24,7 @@ final class MyCellCollectionViewCell: UICollectionViewCell {
        let i = UIImageView()
         let image = UIImage()
         i.image = image
-        i.contentMode = UIViewContentMode.scaleAspectFill
+        i.contentMode = UIView.ContentMode.scaleAspectFill
         i.alpha = 0.9
         i.translatesAutoresizingMaskIntoConstraints = false
         return i
