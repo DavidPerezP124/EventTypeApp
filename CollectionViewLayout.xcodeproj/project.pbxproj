@@ -16,10 +16,6 @@
 		818B661D21E57061001056B6 /* MyCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818B661C21E57061001056B6 /* MyCellCollectionViewCell.swift */; };
 		818ECDA621E6CBDC009C26E9 /* GradientColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818ECDA521E6CBDB009C26E9 /* GradientColors.swift */; };
 		818ECDA821E6D41D009C26E9 /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818ECDA721E6D41D009C26E9 /* EventModel.swift */; };
-		8191134C21E7FCE6004A4086 /* iosExperienceSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8191134B21E7FCE6004A4086 /* iosExperienceSDK.framework */; };
-		8191134D21E7FCE6004A4086 /* iosExperienceSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8191134B21E7FCE6004A4086 /* iosExperienceSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8191135021E7FCF1004A4086 /* PresenceSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8191134F21E7FCF1004A4086 /* PresenceSDK.framework */; };
-		8191135121E7FCF1004A4086 /* PresenceSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8191134F21E7FCF1004A4086 /* PresenceSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8191135521E80BC5004A4086 /* PresenceSDKView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191135421E80BC5004A4086 /* PresenceSDKView.swift */; };
 		8191135821E826E4004A4086 /* CollectionViewLayout.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8191135621E826E4004A4086 /* CollectionViewLayout.xcdatamodeld */; };
 		8191137B21E827E1004A4086 /* PersitanceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191137A21E827E1004A4086 /* PersitanceService.swift */; };
@@ -36,8 +32,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				8191135121E7FCF1004A4086 /* PresenceSDK.framework in Embed Frameworks */,
-				8191134D21E7FCE6004A4086 /* iosExperienceSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -56,8 +50,6 @@
 		818B661C21E57061001056B6 /* MyCellCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCellCollectionViewCell.swift; sourceTree = "<group>"; };
 		818ECDA521E6CBDB009C26E9 /* GradientColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientColors.swift; sourceTree = "<group>"; };
 		818ECDA721E6D41D009C26E9 /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
-		8191134B21E7FCE6004A4086 /* iosExperienceSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iosExperienceSDK.framework; sourceTree = "<group>"; };
-		8191134F21E7FCF1004A4086 /* PresenceSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PresenceSDK.framework; sourceTree = "<group>"; };
 		8191135421E80BC5004A4086 /* PresenceSDKView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenceSDKView.swift; sourceTree = "<group>"; };
 		8191135721E826E4004A4086 /* CollectionViewLayoutModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CollectionViewLayoutModel.xcdatamodel; sourceTree = "<group>"; };
 		8191137A21E827E1004A4086 /* PersitanceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersitanceService.swift; sourceTree = "<group>"; };
@@ -72,8 +64,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8191135021E7FCF1004A4086 /* PresenceSDK.framework in Frameworks */,
-				8191134C21E7FCE6004A4086 /* iosExperienceSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,8 +73,6 @@
 		818B65FC21E56C83001056B6 = {
 			isa = PBXGroup;
 			children = (
-				8191134F21E7FCF1004A4086 /* PresenceSDK.framework */,
-				8191134B21E7FCE6004A4086 /* iosExperienceSDK.framework */,
 				818B660721E56C83001056B6 /* CollectionViewLayout */,
 				818B660621E56C83001056B6 /* Products */,
 			);
