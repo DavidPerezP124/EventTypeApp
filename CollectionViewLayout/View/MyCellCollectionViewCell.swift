@@ -14,7 +14,7 @@ final class MyCellCollectionViewCell: UICollectionViewCell {
        let l = UILabel(frame: .zero)
         l.textAlignment = .center
         l.textColor = .white
-        l.font.withSize(30)
+        l.font.withSize(40)
         l.backgroundColor = .clear
         l.translatesAutoresizingMaskIntoConstraints = false
         return l
@@ -44,10 +44,11 @@ final class MyCellCollectionViewCell: UICollectionViewCell {
             img.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor),
             img.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
             img.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
-            label.topAnchor.constraint(equalTo: self.contentView.topAnchor),
+            
             label.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor),
             label.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
-            label.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
+            label.heightAnchor.constraint(equalToConstant: self.bounds.height/2),
+            label.widthAnchor.constraint(equalToConstant: self.bounds.width/3)
             ])
        
         self.clipsToBounds = true

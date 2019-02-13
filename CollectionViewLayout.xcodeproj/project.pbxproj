@@ -25,6 +25,9 @@
 		8191137B21E827E1004A4086 /* PersitanceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191137A21E827E1004A4086 /* PersitanceService.swift */; };
 		8191139221E83335004A4086 /* EventEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191139021E83335004A4086 /* EventEntity+CoreDataClass.swift */; };
 		8191139321E83335004A4086 /* EventEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191139121E83335004A4086 /* EventEntity+CoreDataProperties.swift */; };
+		81A4D0F3221454F9003B9823 /* EventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A4D0F2221454F9003B9823 /* EventsViewModel.swift */; };
+		81A4D0F52214707A003B9823 /* db.json in Resources */ = {isa = PBXBuildFile; fileRef = 81A4D0F42214707A003B9823 /* db.json */; };
+		81A4D0F72214805E003B9823 /* EventArrayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A4D0F62214805E003B9823 /* EventArrayModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -61,6 +64,9 @@
 		8191137A21E827E1004A4086 /* PersitanceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersitanceService.swift; sourceTree = "<group>"; };
 		8191139021E83335004A4086 /* EventEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		8191139121E83335004A4086 /* EventEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		81A4D0F2221454F9003B9823 /* EventsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewModel.swift; sourceTree = "<group>"; };
+		81A4D0F42214707A003B9823 /* db.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = db.json; sourceTree = "<group>"; };
+		81A4D0F62214805E003B9823 /* EventArrayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventArrayModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,23 +103,74 @@
 		818B660721E56C83001056B6 /* CollectionViewLayout */ = {
 			isa = PBXGroup;
 			children = (
-				8191139021E83335004A4086 /* EventEntity+CoreDataClass.swift */,
-				8191139121E83335004A4086 /* EventEntity+CoreDataProperties.swift */,
-				818B660821E56C83001056B6 /* AppDelegate.swift */,
-				818B660A21E56C83001056B6 /* ViewController.swift */,
-				818B660C21E56C83001056B6 /* Main.storyboard */,
-				818B660F21E56C83001056B6 /* Assets.xcassets */,
-				818B661121E56C83001056B6 /* LaunchScreen.storyboard */,
+				81A4D0F12214510F003B9823 /* Service */,
+				81A4D0ED221450A2003B9823 /* ViewModel */,
+				81A4D0EF221450B9003B9823 /* Controller */,
+				81A4D0EE221450AA003B9823 /* Models */,
+				81A4D0EC2214507C003B9823 /* View */,
+				81A4D0F0221450E3003B9823 /* Resources */,
+				81A4D0F42214707A003B9823 /* db.json */,
 				818B661421E56C83001056B6 /* Info.plist */,
-				818B661A21E56D0E001056B6 /* CollectionViewFlow.swift */,
-				818B661C21E57061001056B6 /* MyCellCollectionViewCell.swift */,
-				818ECDA521E6CBDB009C26E9 /* GradientColors.swift */,
-				818ECDA721E6D41D009C26E9 /* EventModel.swift */,
 				8191135421E80BC5004A4086 /* PresenceSDKView.swift */,
-				8191137A21E827E1004A4086 /* PersitanceService.swift */,
 				8191135621E826E4004A4086 /* CollectionViewLayout.xcdatamodeld */,
 			);
 			path = CollectionViewLayout;
+			sourceTree = "<group>";
+		};
+		81A4D0EC2214507C003B9823 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				818B660C21E56C83001056B6 /* Main.storyboard */,
+				818B661121E56C83001056B6 /* LaunchScreen.storyboard */,
+				818B661A21E56D0E001056B6 /* CollectionViewFlow.swift */,
+				818B661C21E57061001056B6 /* MyCellCollectionViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		81A4D0ED221450A2003B9823 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				81A4D0F2221454F9003B9823 /* EventsViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		81A4D0EE221450AA003B9823 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				818ECDA721E6D41D009C26E9 /* EventModel.swift */,
+				8191139021E83335004A4086 /* EventEntity+CoreDataClass.swift */,
+				8191139121E83335004A4086 /* EventEntity+CoreDataProperties.swift */,
+				81A4D0F62214805E003B9823 /* EventArrayModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		81A4D0EF221450B9003B9823 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				818B660A21E56C83001056B6 /* ViewController.swift */,
+				818B660821E56C83001056B6 /* AppDelegate.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		81A4D0F0221450E3003B9823 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				818ECDA521E6CBDB009C26E9 /* GradientColors.swift */,
+				818B660F21E56C83001056B6 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		81A4D0F12214510F003B9823 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				8191137A21E827E1004A4086 /* PersitanceService.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -178,6 +235,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				818B661321E56C83001056B6 /* LaunchScreen.storyboard in Resources */,
+				81A4D0F52214707A003B9823 /* db.json in Resources */,
 				818B661021E56C83001056B6 /* Assets.xcassets in Resources */,
 				818B660E21E56C83001056B6 /* Main.storyboard in Resources */,
 			);
@@ -190,6 +248,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81A4D0F72214805E003B9823 /* EventArrayModel.swift in Sources */,
 				818B661B21E56D0E001056B6 /* CollectionViewFlow.swift in Sources */,
 				818B660B21E56C83001056B6 /* ViewController.swift in Sources */,
 				8191135521E80BC5004A4086 /* PresenceSDKView.swift in Sources */,
@@ -199,6 +258,7 @@
 				8191137B21E827E1004A4086 /* PersitanceService.swift in Sources */,
 				818ECDA821E6D41D009C26E9 /* EventModel.swift in Sources */,
 				8191139221E83335004A4086 /* EventEntity+CoreDataClass.swift in Sources */,
+				81A4D0F3221454F9003B9823 /* EventsViewModel.swift in Sources */,
 				818B660921E56C83001056B6 /* AppDelegate.swift in Sources */,
 				8191135821E826E4004A4086 /* CollectionViewLayout.xcdatamodeld in Sources */,
 			);

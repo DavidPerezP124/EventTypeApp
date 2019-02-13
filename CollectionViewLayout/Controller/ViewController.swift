@@ -7,12 +7,13 @@
 //
 
 import UIKit
-import CoreData
+
 
 final class ViewController: UIViewController, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
-    private  var savedEvents: [EventEntity] = []
-    private  var events: [EventModel?] = []
+    
+    var events: [EventEntity] = []
+    
     
     private   var gradient = CAGradientLayer()
     private  var on = true
@@ -43,27 +44,20 @@ final class ViewController: UIViewController, UICollectionViewDelegateFlowLayout
         return c
     }()
     
+    private var viewModel: EventsViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view, typically from a nib.
+        setupViewModel()
+        viewModel?.viewDidLoad()
+        setupEvents()
         setupView()
-        ftchJSON()
-        
-        let ftchRequest: NSFetchRequest<EventEntity> = EventEntity.fetchRequest()
-        
-        do {
-            let savedEvents = try PersitanceService.context.fetch(ftchRequest)
-            print(savedEvents)
-            // savedEvents = savedEvents
-            collectionView.reloadData()
-        } catch {
-            print("fetch error")
-        }
-        
-        
     }
+    
+    func setupViewModel(){
+        viewModel = EventsViewModel(delegate: self, savedEvents: events)
+    }
+    
     override func viewDidLayoutSubviews() {
         addGradientEffect(targetView: view1)
     }
@@ -77,51 +71,10 @@ final class ViewController: UIViewController, UICollectionViewDelegateFlowLayout
         targetView.layer.addSublayer(gradient)
     }
     
-    fileprivate   func createEventArray(){
-       
-        
-        let eventData = EventEntity(context: PersitanceService.context)
-        
-        for evnts in events {
-            let imgFromURl = URL(string: evnts!.img)
-            let data = try? Data(contentsOf: imgFromURl!)
-            eventData.entityImage = NSData(data: data!)
-            eventData.entityCost = evnts!.cost
-            eventData.entityTime = evnts!.time
-            eventData.entityNameString = evnts!.name
-            PersitanceService.saveContext()
-            savedEvents.append(eventData)
-            print(savedEvents)
-            collectionView.reloadData()
-        }
-    }
     
-    fileprivate func ftchJSON(){
-        
-        let urlString = "https://my-json-server.typicode.com/DavidPerezP124/EventJSON/posts"
-        guard let url = URL(string: urlString) else {return}
-        URLSession.shared.dataTask(with: url) { (data, _, err) in
-            DispatchQueue.main.async {
-                if let err = err {
-                    print("URL fecth error", err)
-                    return
-                }
-                guard let data = data else {return}
-                do {
-                    let decoder = JSONDecoder()
-                    self.events = try decoder.decode([EventModel].self, from: data)
-                    // self.events = [self.event]
-                    self.collectionView.reloadData()
-                } catch let jsonError {
-                    print("Decode failure", jsonError)
-                }
-            }
-            self.createEventArray()
-            }.resume()
-        
-    }
     
-    fileprivate func setupView(){
+    
+     func setupView(){
         view.addSubview(view1)
         view.addSubview(button)
         view.addSubview(collectionView)
@@ -148,43 +101,38 @@ final class ViewController: UIViewController, UICollectionViewDelegateFlowLayout
         
     }
     
-    fileprivate func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.bounds.size.width, height: 120)
     }
     
-    fileprivate func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
     
-    fileprivate  func numberOfSections(in collectionView: UICollectionView) -> Int {
+     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
+    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return events.count
     }
     
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyCell", for: indexPath) as! MyCellCollectionViewCell
-//        DispatchQueue.main.async {
-//            let cellEvent = self.savedEvents[indexPath.row]
-//
-//            //        let imgUrl = URL(string: (cellEvent.img))
-//            //        let data = try? Data(contentsOf: imgUrl!)
-//
-//            cell.img.image = UIImage(data: cellEvent.entityImage! as Data)
-//            cell.label.text = cellEvent.entityNameString
-//        }
-        // cell.img.contentMode = UIViewContentMode.scaleAspectFill
-        
+            let cellEvent = self.events[indexPath.row]
+            print(cellEvent)
+            if cellEvent.entityNameString !=  nil {
+            cell.img.image = UIImage(data: cellEvent.entityImage! as Data)
+            cell.label.text = cellEvent.entityNameString
+            }
         return cell 
     }
-    fileprivate func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("selected")
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
     }
     
-    fileprivate func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
     
@@ -214,12 +162,16 @@ final class ViewController: UIViewController, UICollectionViewDelegateFlowLayout
             on = true
         }
     }
+}
+
+extension ViewController: EventsViewDelegate {
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func reloadData(){
+        collectionView.reloadData()
     }
     
-    
+    func setupEvents(){
+        events = viewModel?.checkSaved() ?? []
+    }
 }
 
