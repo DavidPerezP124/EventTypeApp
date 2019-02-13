@@ -26,7 +26,6 @@
 		8191139221E83335004A4086 /* EventEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191139021E83335004A4086 /* EventEntity+CoreDataClass.swift */; };
 		8191139321E83335004A4086 /* EventEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191139121E83335004A4086 /* EventEntity+CoreDataProperties.swift */; };
 		81A4D0F3221454F9003B9823 /* EventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A4D0F2221454F9003B9823 /* EventsViewModel.swift */; };
-		81A4D0F52214707A003B9823 /* db.json in Resources */ = {isa = PBXBuildFile; fileRef = 81A4D0F42214707A003B9823 /* db.json */; };
 		81A4D0F72214805E003B9823 /* EventArrayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81A4D0F62214805E003B9823 /* EventArrayModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -65,7 +64,6 @@
 		8191139021E83335004A4086 /* EventEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		8191139121E83335004A4086 /* EventEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		81A4D0F2221454F9003B9823 /* EventsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewModel.swift; sourceTree = "<group>"; };
-		81A4D0F42214707A003B9823 /* db.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = db.json; sourceTree = "<group>"; };
 		81A4D0F62214805E003B9823 /* EventArrayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventArrayModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -109,7 +107,6 @@
 				81A4D0EE221450AA003B9823 /* Models */,
 				81A4D0EC2214507C003B9823 /* View */,
 				81A4D0F0221450E3003B9823 /* Resources */,
-				81A4D0F42214707A003B9823 /* db.json */,
 				818B661421E56C83001056B6 /* Info.plist */,
 				8191135421E80BC5004A4086 /* PresenceSDKView.swift */,
 				8191135621E826E4004A4086 /* CollectionViewLayout.xcdatamodeld */,
@@ -235,7 +232,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				818B661321E56C83001056B6 /* LaunchScreen.storyboard in Resources */,
-				81A4D0F52214707A003B9823 /* db.json in Resources */,
 				818B661021E56C83001056B6 /* Assets.xcassets in Resources */,
 				818B660E21E56C83001056B6 /* Main.storyboard in Resources */,
 			);
