@@ -11,10 +11,9 @@ import Foundation
 
 
 struct EventModel: Decodable {
-    
    let img: String?
    let name: String?
    let cost: Double?
-   let time:  String?
+   let time: String?
 }
 

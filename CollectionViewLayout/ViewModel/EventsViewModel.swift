@@ -15,7 +15,7 @@ protocol EventsViewDelegate: class {
 }
 
 protocol EventsView {
-    func viewDidLoad()
+    func viewWillLoad()
     func checkSaved() -> [EventEntity]?
 }
 
@@ -34,24 +34,12 @@ class EventsViewModel: EventsView {
     }
     
     
-    func viewDidLoad(){
+    func viewWillLoad(){
         ftchJSON()
     }
     
     
-    func checkSaved() -> [EventEntity]?{
-        
-        let ftchRequest: NSFetchRequest<EventEntity> = EventEntity.fetchRequest()
-        do {
-            let savedEvents = try PersitanceService.context.fetch(ftchRequest)
-            return savedEvents
-            self.delegate?.reloadData()
-        } catch {
-            print("fetch error")
-            return nil
-        }
-        
-    }
+    
     
     fileprivate func createEventArray(){
         let eventData = EventEntity(context: PersitanceService.context)
@@ -66,6 +54,10 @@ class EventsViewModel: EventsView {
             eventData.entityNameString = evnts!.name
             savedEvents.append(eventData)
             PersitanceService.saveContext()
+            
+        }
+        
+        defer {
             self.delegate?.setupEvents()
             self.delegate?.reloadData()
         }
@@ -87,15 +79,36 @@ class EventsViewModel: EventsView {
                     let decoder = JSONDecoder()
                    let events = try decoder.decode([EventModel].self, from: data)
                     print(events)
-                    for evnt in events {
-                        self.events.append(evnt)
+                    defer {
                         self.createEventArray()
                     }
+                    for evnt in events {
+                        self.events.append(evnt)
+                         self.createEventArray()
+                    }
+                    
                 } catch let jsonError {
                     print("Decode failure", jsonError)
                 }
             }
         }.resume()
     }
+    
+    func checkSaved() -> [EventEntity]?{
+        
+        let ftchRequest: NSFetchRequest<EventEntity> = EventEntity.fetchRequest()
+        do {
+            defer{self.delegate?.reloadData()}
+            let savedEvents = try PersitanceService.context.fetch(ftchRequest)
+            return savedEvents
+            
+        } catch {
+            print("fetch error")
+            return nil
+        }
+        
+    }
+    
+    
     
 }

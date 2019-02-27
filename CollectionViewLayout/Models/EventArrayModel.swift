@@ -8,6 +8,6 @@
 
 import Foundation
 
-struct EventArrayModel : Decodable{
+struct EventArrayModel : Decodable {
     var eventModel: [EventModel]?
 }

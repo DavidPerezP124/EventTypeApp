@@ -46,11 +46,17 @@ final class ViewController: UIViewController, UICollectionViewDelegateFlowLayout
     
     private var viewModel: EventsViewModel?
     
+    override func viewWillAppear(_ animated: Bool) {
+         setupEvents()
+        setupViewModel()
+        viewModel?.viewWillLoad()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupViewModel()
-        viewModel?.viewDidLoad()
-        setupEvents()
+        
+       
+       
         setupView()
     }
     
@@ -136,9 +142,6 @@ final class ViewController: UIViewController, UICollectionViewDelegateFlowLayout
         return 0
     }
     
-    
-    
-    
     @objc
     fileprivate  func changeColor(){
         print("touched")
@@ -165,11 +168,9 @@ final class ViewController: UIViewController, UICollectionViewDelegateFlowLayout
 }
 
 extension ViewController: EventsViewDelegate {
-    
     func reloadData(){
         collectionView.reloadData()
     }
-    
     func setupEvents(){
         events = viewModel?.checkSaved() ?? []
     }
