@@ -10,4 +10,4 @@ An app that loads a JSON to populate a UITableView. In this case, the loaded ite
 
 The idea of the app when/if finished is to show current events that don't need previous RSVP for the day or night. 
 Using dark mode will let you see what nearby events are available for later in nighttime. It should default to current time, 
-but you can see if the will be something to do at night in your vecinity. 
+but you can see if there will be something to do at night in your vecinity. 
